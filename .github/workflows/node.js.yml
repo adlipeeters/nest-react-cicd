@@ -23,9 +23,19 @@ jobs:
           
       # Backend dependencies installation
       - name: Install Backend Dependencies
+        working-directory: ./backend
         run: |
           npm ci # Use npm ci for a more consistent and faster installation when using a package-lock.json
           npm run build
+
+        # Frontend dependencies installation and build
+      - name: Install Frontend Dependencies and Build
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: false
           
       # PM2 and Nginx operations
       - name: Manage PM2 and Nginx
