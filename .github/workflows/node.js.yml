@@ -41,6 +41,6 @@ jobs:
       - name: Manage PM2 and Nginx
         run: |
           pm2 stop nest
-          pm2 start backend/dist/main.js --name nest
+          pm2 start nest
           pm2 save
           sudo service nginx restart
