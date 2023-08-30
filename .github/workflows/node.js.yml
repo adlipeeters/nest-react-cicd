@@ -40,7 +40,7 @@ jobs:
       # PM2 and Nginx operations
       - name: Manage PM2 and Nginx
         run: |
-          pm2 stop 0
-          pm2 start 0
+          pm2 stop nest-react
+          pm2 start nest-react
           pm2 save
           sudo service nginx restart
