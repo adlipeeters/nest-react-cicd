@@ -8,7 +8,5 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   await app.listen(3000);
 
-  // app.use(express.static(path.join(__dirname, '../frontend/build')));
-
 }
 bootstrap();
