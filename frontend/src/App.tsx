@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import type { RouteObject } from 'react-router-dom';
+import { Outlet, Link, useRoutes, useLocation } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout/DashboardLayout';
+import Dashboard from './views/Dashboard'
+import WebsiteLayout from './layouts/WebsiteLayout/WebsiteLayout';
+import Login from './views/Auth/Login';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const routes: RouteObject[] = [
+    {
+      path: '/',
+      element: <DashboardLayout />,
+      children: [
+        // { index: true, element: <Landing /> },
+        { index: true, path: '/', element: <Dashboard /> },
+        { index: true, path: '/home', element: <Dashboard /> },
+        { index: true, path: '/about', element: <Dashboard /> },
+      ],
+    },
+    {
+      path: '/login',
+      element: <WebsiteLayout />,
+      children: [
+        // { index: true, element: <Landing /> },
+        { index: true, path: '/login', element: <Login /> },
+      ],
+    },
+  ];
+
+  return useRoutes(routes);
+};
+
 
 export default App;
